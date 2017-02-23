@@ -262,9 +262,6 @@ namespace Tangari.XrmToolBoxExtensions.SolutionImporter
             }
         }
 
-
-        #endregion
-
         private void btnImportSolution_Click(object sender, EventArgs e)
         {
             if (lstOrgs.Items.Count > 0 && lstOrgs.SelectedItems.Count > 0)
@@ -275,7 +272,7 @@ namespace Tangari.XrmToolBoxExtensions.SolutionImporter
                     {
                         if (System.IO.Path.GetExtension(txtSolutionPath.Text).ToUpper() == ".ZIP")
                         {
-                            ExecuteMethod(ImportSolution);                            
+                            ExecuteMethod(ImportSolution);
                         }
                         else
                         {
@@ -293,5 +290,8 @@ namespace Tangari.XrmToolBoxExtensions.SolutionImporter
                 MessageBox.Show("Before to proceed please select at least one target organization!", "GT Solution Importer");
             }
         }
+
+
+        #endregion
     }
 }
