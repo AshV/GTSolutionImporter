@@ -63,3 +63,4 @@ C:\Users\TANGAG\Documents\GitHub\GTSolutionImporter\Tangari.XrmToolBoxExtensions
 C:\Users\TANGAG\Documents\GitHub\GTSolutionImporter\Tangari.XrmToolBoxExtensions.SolutionImporter\obj\Debug\Tangari.XrmToolBoxExtensions.SolutionImporter.csproj.GenerateResource.Cache
 C:\Users\TANGAG\Documents\GitHub\GTSolutionImporter\Tangari.XrmToolBoxExtensions.SolutionImporter\obj\Debug\Tangari.XrmToolBoxExtensions.SolutionImporter.dll
 C:\Users\TANGAG\Documents\GitHub\GTSolutionImporter\Tangari.XrmToolBoxExtensions.SolutionImporter\obj\Debug\Tangari.XrmToolBoxExtensions.SolutionImporter.pdb
+C:\Users\TANGAG\Documents\GitHub\GTSolutionImporter\Tangari.XrmToolBoxExtensions.SolutionImporter\bin\Debug\Microsoft.Pfe.Xrm.Core.dll

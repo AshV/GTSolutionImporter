@@ -13,6 +13,9 @@ using System.ServiceModel.Description;
 using Microsoft.Xrm.Sdk.Client;
 using Microsoft.Xrm.Sdk.Discovery;
 using System.IO;
+using Microsoft.Crm.Sdk.Messages;
+using Microsoft.Pfe.Xrm;
+using Microsoft.Xrm.Sdk;
 
 namespace Tangari.XrmToolBoxExtensions.SolutionImporter
 {
@@ -21,6 +24,7 @@ namespace Tangari.XrmToolBoxExtensions.SolutionImporter
         #region Private parameters
 
         private Boolean isSolutionSelected = false;
+        private String solutionLocation = String.Empty;
 
         #endregion
 
@@ -71,6 +75,70 @@ namespace Tangari.XrmToolBoxExtensions.SolutionImporter
         public GTSolutionImporterControlPlugin()
         {
             InitializeComponent();
+        }
+
+        #endregion
+
+        #region Private methods
+
+        private void ImportSolution()
+        {
+            WorkAsync(new WorkAsyncInfo
+            {
+                Message = "Executing request...",
+                Work = (bw, e) =>
+                {
+                    Type thisType = this.GetType();
+                    Type serviceType = this.Service.GetType();
+
+                    String OriginalUrl = (String)(((thisType.GetProperty("ConnectionDetail").GetValue(this, null)).GetType()).GetProperty("OriginalUrl")).GetValue(thisType.GetProperty("ConnectionDetail").GetValue(this, null), null);
+
+                    ClientCredentials credentials = (ClientCredentials)serviceType.GetProperty("ClientCredentials").GetValue(this.Service, null);
+                    String username = credentials.UserName.UserName;
+                    String password = credentials.UserName.Password;
+
+                    if (username == null && password == null)
+                    {
+                        username = credentials.Windows.ClientCredential.UserName;
+                        password = credentials.Windows.ClientCredential.Password;
+                    }
+                                      
+                    for (int i = 0; i < lstOrgs.SelectedItems.Count; i++)
+                    {
+                        System.Collections.Generic.KeyValuePair<string, string> item = (System.Collections.Generic.KeyValuePair<string, string>)lstOrgs.SelectedItems[i];
+
+                        // Now instantiate che PFE Parallel Library and create the requests
+                        var serverUri = XrmServiceUriFactory.CreateOrganizationServiceUri(item.Key);
+                        OrganizationServiceManager manager = new OrganizationServiceManager(serverUri, username, password);
+
+                        System.Collections.Generic.KeyValuePair<string, string> obj = (System.Collections.Generic.KeyValuePair<string, string>)lstOrgs.SelectedItems[i];
+                        byte[] solutionBytes = File.ReadAllBytes(solutionLocation);
+
+                        List<OrganizationRequest> requests = new List<OrganizationRequest>();
+                        ImportSolutionRequest importSolutionRequest = new ImportSolutionRequest()
+                        {
+                            CustomizationFile = solutionBytes
+                        };
+
+                        requests.Add(importSolutionRequest);
+                        manager.ParallelProxy.Execute(requests);
+                    }
+                   
+                    //_serviceProxy.Execute(impSolReq);
+                },
+                PostWorkCallBack = e =>
+                {
+                    if (e.Error == null)
+                    {
+                        MessageBox.Show("Records updated successfully", "GT Bulk Assigner");
+                        //RetrieveRecordFromFetchXml();
+                    }
+                    else
+                    {
+                        MessageBox.Show(e.Error.Message, "GT Bulk Assigner");
+                    }
+                }
+            });
         }
 
         #endregion
@@ -145,8 +213,9 @@ namespace Tangari.XrmToolBoxExtensions.SolutionImporter
                     Dictionary<string, string> collections = new Dictionary<string, string>();
 
                     foreach (OrganizationDetail orgInfo in retrieveOrganizationsResponse.Details)
-                    {
-                        collections.Add(orgInfo.OrganizationId.ToString(), orgInfo.FriendlyName);
+                    {                        
+                        String urlName = orgInfo.Endpoints.Where(org => org.Key == EndpointType.OrganizationService).FirstOrDefault().Value;
+                        collections.Add(urlName, orgInfo.FriendlyName);
                     }
 
 
@@ -172,6 +241,7 @@ namespace Tangari.XrmToolBoxExtensions.SolutionImporter
                 lblSolution.Text = "Solution to import: " + openFile.FileName.Substring(openFile.FileName.LastIndexOf(@"\") + 1);
 
                 isSolutionSelected = true;
+                solutionLocation = openFile.FileName;
             }
             else
             {
@@ -194,13 +264,7 @@ namespace Tangari.XrmToolBoxExtensions.SolutionImporter
                     {
                         if (System.IO.Path.GetExtension(txtSolutionPath.Text).ToUpper() == ".ZIP")
                         {
-                            for (int i = 0; i < lstOrgs.SelectedItems.Count; i++)
-                            {                                
-                                System.Collections.Generic.KeyValuePair<string, string> obj =
-                                    (System.Collections.Generic.KeyValuePair<string, string>)lstOrgs.SelectedItems[i];
-
-                                MessageBox.Show(obj.Key + " - " + obj.Value, "GT Solution Importer");
-                            }
+                            ExecuteMethod(ImportSolution);                            
                         }
                         else
                         {
