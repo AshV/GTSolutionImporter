@@ -22,7 +22,7 @@ namespace Tangari.XrmToolBoxExtensions.SolutionImporter {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class GTSolutionImporterControl{
+    internal class GTSolutionImporterControl {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -57,6 +57,36 @@ namespace Tangari.XrmToolBoxExtensions.SolutionImporter {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Point similar to {X=17,Y=17}.
+        /// </summary>
+        internal static System.Drawing.Point toolStripMenu_TrayLocation {
+            get {
+                object obj = ResourceManager.GetObject("toolStripMenu.TrayLocation", resourceCulture);
+                return ((System.Drawing.Point)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap tsbCancel_Image {
+            get {
+                object obj = ResourceManager.GetObject("tsbCancel.Image", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap tsbClose_Image {
+            get {
+                object obj = ResourceManager.GetObject("tsbClose.Image", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }
