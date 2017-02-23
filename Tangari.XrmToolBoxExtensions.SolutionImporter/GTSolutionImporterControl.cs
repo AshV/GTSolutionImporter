@@ -102,40 +102,51 @@ namespace Tangari.XrmToolBoxExtensions.SolutionImporter
                         username = credentials.Windows.ClientCredential.UserName;
                         password = credentials.Windows.ClientCredential.Password;
                     }
-                                      
-                    for (int i = 0; i < lstOrgs.SelectedItems.Count; i++)
+
+                    String currentOrg = "";
+
+                    try
                     {
-                        System.Collections.Generic.KeyValuePair<string, string> item = (System.Collections.Generic.KeyValuePair<string, string>)lstOrgs.SelectedItems[i];
-
-                        // Now instantiate che PFE Parallel Library and create the requests
-                        var serverUri = XrmServiceUriFactory.CreateOrganizationServiceUri(item.Key);
-                        OrganizationServiceManager manager = new OrganizationServiceManager(serverUri, username, password);
-
-                        System.Collections.Generic.KeyValuePair<string, string> obj = (System.Collections.Generic.KeyValuePair<string, string>)lstOrgs.SelectedItems[i];
-                        byte[] solutionBytes = File.ReadAllBytes(solutionLocation);
-
-                        List<OrganizationRequest> requests = new List<OrganizationRequest>();
-                        ImportSolutionRequest importSolutionRequest = new ImportSolutionRequest()
+                        for (int i = 0; i < lstOrgs.SelectedItems.Count; i++)
                         {
-                            CustomizationFile = solutionBytes
-                        };
+                            System.Collections.Generic.KeyValuePair<string, string> item = (System.Collections.Generic.KeyValuePair<string, string>)lstOrgs.SelectedItems[i];
 
-                        requests.Add(importSolutionRequest);
-                        manager.ParallelProxy.Execute(requests);
+                            // Now instantiate che PFE Parallel Library and create the requests
+                            var serverUri = XrmServiceUriFactory.CreateOrganizationServiceUri(item.Key);
+                            OrganizationServiceManager manager = new OrganizationServiceManager(serverUri, username, password);
+
+                            System.Collections.Generic.KeyValuePair<string, string> obj = (System.Collections.Generic.KeyValuePair<string, string>)lstOrgs.SelectedItems[i];
+                            byte[] solutionBytes = File.ReadAllBytes(solutionLocation);
+
+                            List<OrganizationRequest> requests = new List<OrganizationRequest>();
+                            ImportSolutionRequest importSolutionRequest = new ImportSolutionRequest()
+                            {
+                                CustomizationFile = solutionBytes
+                            };
+
+                            requests.Add(importSolutionRequest);
+                            manager.ParallelProxy.Execute(requests);
+
+                            String message = solutionLocation.Substring(solutionLocation.LastIndexOf(@"\") + 1) + " imported successfully in " + obj.Value;
+                            lstImportStatus.Items.Add(message);
+                        }
                     }
-                   
-                    //_serviceProxy.Execute(impSolReq);
+                    catch(Exception exc)
+                    {
+                        String message = "Error while importing the solution " + solutionLocation.Substring(solutionLocation.LastIndexOf(@"\") + 1) + " in " + currentOrg;
+                        lstImportStatus.Items.Add(message);
+                    }                   
                 },
                 PostWorkCallBack = e =>
                 {
                     if (e.Error == null)
                     {
-                        MessageBox.Show("Records updated successfully", "GT Bulk Assigner");
+                        MessageBox.Show("Operation completed successfully", "GT Solution Importer");
                         //RetrieveRecordFromFetchXml();
                     }
                     else
                     {
-                        MessageBox.Show(e.Error.Message, "GT Bulk Assigner");
+                        MessageBox.Show(e.Error.Message, "GT Solution Importer");
                     }
                 }
             });
