@@ -1,3 +1,5 @@
+C:\Users\TANGAG\Documents\GitHub\GTSolutionImporter\Tangari.XrmToolBoxExtensions.SolutionImporter\obj\Release\Tangari.XrmToolBoxExtensions.SolutionImporter.GTSolutionImporterControlPlugin.resources
+C:\Users\TANGAG\Documents\GitHub\GTSolutionImporter\Tangari.XrmToolBoxExtensions.SolutionImporter\obj\Release\Tangari.XrmToolBoxExtensions.SolutionImporter.csproj.GenerateResource.Cache
 C:\Users\TANGAG\Documents\GitHub\GTSolutionImporter\Tangari.XrmToolBoxExtensions.SolutionImporter\bin\Release\Tangari.XrmToolBoxExtensions.SolutionImporter.dll.config
 C:\Users\TANGAG\Documents\GitHub\GTSolutionImporter\Tangari.XrmToolBoxExtensions.SolutionImporter\bin\Release\Tangari.XrmToolBoxExtensions.SolutionImporter.dll
 C:\Users\TANGAG\Documents\GitHub\GTSolutionImporter\Tangari.XrmToolBoxExtensions.SolutionImporter\bin\Release\Tangari.XrmToolBoxExtensions.SolutionImporter.pdb
@@ -27,8 +29,5 @@ C:\Users\TANGAG\Documents\GitHub\GTSolutionImporter\Tangari.XrmToolBoxExtensions
 C:\Users\TANGAG\Documents\GitHub\GTSolutionImporter\Tangari.XrmToolBoxExtensions.SolutionImporter\bin\Release\Microsoft.Xrm.Sdk.Workflow.xml
 C:\Users\TANGAG\Documents\GitHub\GTSolutionImporter\Tangari.XrmToolBoxExtensions.SolutionImporter\bin\Release\Microsoft.Xrm.Tooling.Connector.xml
 C:\Users\TANGAG\Documents\GitHub\GTSolutionImporter\Tangari.XrmToolBoxExtensions.SolutionImporter\bin\Release\Newtonsoft.Json.xml
-C:\Users\TANGAG\Documents\GitHub\GTSolutionImporter\Tangari.XrmToolBoxExtensions.SolutionImporter\obj\Release\Tangari.XrmToolBoxExtensions.SolutionImporter.csprojResolveAssemblyReference.cache
-C:\Users\TANGAG\Documents\GitHub\GTSolutionImporter\Tangari.XrmToolBoxExtensions.SolutionImporter\obj\Release\Tangari.XrmToolBoxExtensions.SolutionImporter.GTSolutionImporterControlPlugin.resources
-C:\Users\TANGAG\Documents\GitHub\GTSolutionImporter\Tangari.XrmToolBoxExtensions.SolutionImporter\obj\Release\Tangari.XrmToolBoxExtensions.SolutionImporter.csproj.GenerateResource.Cache
 C:\Users\TANGAG\Documents\GitHub\GTSolutionImporter\Tangari.XrmToolBoxExtensions.SolutionImporter\obj\Release\Tangari.XrmToolBoxExtensions.SolutionImporter.dll
 C:\Users\TANGAG\Documents\GitHub\GTSolutionImporter\Tangari.XrmToolBoxExtensions.SolutionImporter\obj\Release\Tangari.XrmToolBoxExtensions.SolutionImporter.pdb

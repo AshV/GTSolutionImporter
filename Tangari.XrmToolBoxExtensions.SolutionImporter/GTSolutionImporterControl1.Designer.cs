@@ -83,6 +83,16 @@ namespace Tangari.XrmToolBoxExtensions.SolutionImporter {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap tsbClear_Image {
+            get {
+                object obj = ResourceManager.GetObject("tsbClear.Image", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap tsbClose_Image {
             get {
                 object obj = ResourceManager.GetObject("tsbClose.Image", resourceCulture);

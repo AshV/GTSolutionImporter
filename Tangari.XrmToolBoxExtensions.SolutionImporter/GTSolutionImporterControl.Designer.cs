@@ -47,7 +47,6 @@
             this.grpImportSolution = new System.Windows.Forms.GroupBox();
             this.lblImportSolution = new System.Windows.Forms.Label();
             this.btnImportSolution = new System.Windows.Forms.Button();
-            this.chckPublishCustomizations = new System.Windows.Forms.CheckBox();
             this.grpImportStatus = new System.Windows.Forms.GroupBox();
             this.lstImportStatus = new System.Windows.Forms.ListBox();
             this.toolStripMenu.SuspendLayout();
@@ -106,9 +105,10 @@
             // 
             // tsbClear
             // 
+            this.tsbClear.Image = ((System.Drawing.Image)(resources.GetObject("tsbClear.Image")));
             this.tsbClear.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbClear.Name = "tsbClear";
-            this.tsbClear.Size = new System.Drawing.Size(38, 22);
+            this.tsbClear.Size = new System.Drawing.Size(54, 22);
             this.tsbClear.Text = "Clear";
             this.tsbClear.ToolTipText = "Clear the interface";
             this.tsbClear.Click += new System.EventHandler(this.tsbClear_Click);
@@ -205,7 +205,6 @@
             // 
             this.grpImportSolution.Controls.Add(this.lblImportSolution);
             this.grpImportSolution.Controls.Add(this.btnImportSolution);
-            this.grpImportSolution.Controls.Add(this.chckPublishCustomizations);
             this.grpImportSolution.Location = new System.Drawing.Point(13, 388);
             this.grpImportSolution.Name = "grpImportSolution";
             this.grpImportSolution.Size = new System.Drawing.Size(325, 86);
@@ -224,23 +223,13 @@
             // 
             // btnImportSolution
             // 
-            this.btnImportSolution.Location = new System.Drawing.Point(229, 15);
+            this.btnImportSolution.Location = new System.Drawing.Point(9, 19);
             this.btnImportSolution.Name = "btnImportSolution";
             this.btnImportSolution.Size = new System.Drawing.Size(90, 23);
             this.btnImportSolution.TabIndex = 1;
             this.btnImportSolution.Text = "Import Solution";
             this.btnImportSolution.UseVisualStyleBackColor = true;
             this.btnImportSolution.Click += new System.EventHandler(this.btnImportSolution_Click);
-            // 
-            // chckPublishCustomizations
-            // 
-            this.chckPublishCustomizations.AutoSize = true;
-            this.chckPublishCustomizations.Location = new System.Drawing.Point(9, 19);
-            this.chckPublishCustomizations.Name = "chckPublishCustomizations";
-            this.chckPublishCustomizations.Size = new System.Drawing.Size(133, 17);
-            this.chckPublishCustomizations.TabIndex = 0;
-            this.chckPublishCustomizations.Text = "Publish Customizations";
-            this.chckPublishCustomizations.UseVisualStyleBackColor = true;
             // 
             // grpImportStatus
             // 
@@ -261,11 +250,13 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lstImportStatus.BackColor = System.Drawing.SystemColors.Window;
+            this.lstImportStatus.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.lstImportStatus.FormattingEnabled = true;
             this.lstImportStatus.Location = new System.Drawing.Point(6, 19);
             this.lstImportStatus.Name = "lstImportStatus";
             this.lstImportStatus.Size = new System.Drawing.Size(487, 459);
             this.lstImportStatus.TabIndex = 0;
+            this.lstImportStatus.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.lstImportStatus_DrawItem);
             // 
             // GTSolutionImporterControlPlugin
             // 
@@ -292,6 +283,8 @@
 
         }
 
+        
+
         #endregion
 
         private System.Windows.Forms.Button btnGetOrgs;
@@ -304,7 +297,6 @@
         private System.Windows.Forms.Label lblSolution;
         private System.Windows.Forms.GroupBox grpImportSolution;
         private System.Windows.Forms.Button btnImportSolution;
-        private System.Windows.Forms.CheckBox chckPublishCustomizations;
         private System.Windows.Forms.Label lblImportSolution;
 
         // ToolStrip
