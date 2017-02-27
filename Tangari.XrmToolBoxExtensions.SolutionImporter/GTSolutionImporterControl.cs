@@ -990,7 +990,8 @@ namespace Tangari.XrmToolBoxExtensions.SolutionImporter
         private void tsbClear_Click(object sender, EventArgs e)
         {
             lstOrgs.DataSource = null;
-            lstImportStatus.DataSource = null;
+            lstImportStatus.Items.Clear();
+            
             txtSolutionPath.Text = "";
             lblImportSolution.Text = "No Solution have been imported";
             lblSolution.Text = "Solution not selected";
